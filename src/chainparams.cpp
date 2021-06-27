@@ -161,12 +161,15 @@ public:
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
 
         // minyaung
-        //printf("Main Hash = %s\n", consensus.hashGenesisBlock.ToString().c_str());
-        //printf("Main Root = %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        // printf("Main Hash = %s\n", consensus.hashGenesisBlock.ToString().c_str());
+        // printf("Main Root = %s\n", genesis.hashMerkleRoot.ToString().c_str());
 
-        assert(consensus.hashGenesisBlock == uint256S("0x1a91e3dace36e2be3bf030a65679fe821aa1d6ef92e7c9902eb318182c355691"));
-        assert(genesis.hashMerkleRoot == uint256S("0x5b2a3f53f605d62c53e62932dac6925e3d74afa5a4b459745c36d42d0ed26a69"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0947609f1689630d15bb3e3175fe582d18d68c815bf896d1e40e6c13057f6b4c"));
+        assert(genesis.hashMerkleRoot == uint256S("0xefde65bd87b4e78f9dd380c2cc8ad9d098623c747d74d09b744a78f42ac7ca7c"));
 
+	// 0x1a91e3dace36e2be3bf030a65679fe821aa1d6ef92e7c9902eb318182c355691
+	// 0x0947609f1689630d15bb3e3175fe582d18d68c815bf896d1e40e6c13057f6b4c
+	// 0xefde65bd87b4e78f9dd380c2cc8ad9d098623c747d74d09b744a78f42ac7ca7c
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         // vSeeds.push_back(CDNSSeedData("multidga.org", "seed.multidga.org", true));
@@ -253,7 +256,7 @@ public:
         consensus.nMajorityRejectBlockOutdated = 750;
         consensus.nMajorityWindow = 1000;
         // BIP34 is never enforced in Dingacoin v2 blocks, so we enforce from v3
-        consensus.BIP34Height = 0;
+        // consensus.BIP34Height = 0;
         // consensus.BIP34Hash = uint256S("0x21b8b97dcdb94caa67c7f8f6dbf22e61e0cfe0e46e1fff3528b22864659e9b38");
         // consensus.BIP65Height = 1854705; // 955bd496d23790aba1ecfacb722b089a6ae7ddabaedf7d8fb0878f48308a71f9
         // consensus.BIP66Height = 708658; // 21b8b97dcdb94caa67c7f8f6dbf22e61e0cfe0e46e1fff3528b22864659e9b38 - this is the last block that could be v2, 1900 blocks past the last v2 block
@@ -334,11 +337,14 @@ public:
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
 
         // minyaung
-        //printf("Test Hash = %s\n", consensus.hashGenesisBlock.ToString().c_str());
-        //printf("Test Root = %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        // printf("Test Hash = %s\n", consensus.hashGenesisBlock.ToString().c_str());
+        // printf("Test Root = %s\n", genesis.hashMerkleRoot.ToString().c_str());
 
-        assert(consensus.hashGenesisBlock == uint256S("0xbb0a78264637406b6360aad926284d544d7049f45189db5664f3c4d07350559e"));
-        assert(genesis.hashMerkleRoot == uint256S("0x5b2a3f53f605d62c53e62932dac6925e3d74afa5a4b459745c36d42d0ed26a69"));
+        assert(consensus.hashGenesisBlock == uint256S("0xdc2ec5acfd682734544f03d52bca51dfa3b40e60e04b50531e68a3c6d3cbd453"));
+        assert(genesis.hashMerkleRoot == uint256S("0xefde65bd87b4e78f9dd380c2cc8ad9d098623c747d74d09b744a78f42ac7ca7c"));
+
+	// 0xbb0a78264637406b6360aad926284d544d7049f45189db5664f3c4d07350559e
+	// 0x5b2a3f53f605d62c53e62932dac6925e3d74afa5a4b459745c36d42d0ed26a69
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -477,11 +483,14 @@ public:
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
 
         // minyaung
-        //printf("Reg Hash = %s\n", consensus.hashGenesisBlock.ToString().c_str());
-        //printf("Reg Root = %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        // printf("Reg Hash = %s\n", consensus.hashGenesisBlock.ToString().c_str());
+        // printf("Reg Root = %s\n", genesis.hashMerkleRoot.ToString().c_str());
 
-        assert(consensus.hashGenesisBlock == uint256S("0x3d2160a3b5dc4a9d62e7e66a295f70313ac808440ef7400d6c0772171ce973a5"));
-        assert(genesis.hashMerkleRoot == uint256S("0x5b2a3f53f605d62c53e62932dac6925e3d74afa5a4b459745c36d42d0ed26a69"));
+        assert(consensus.hashGenesisBlock == uint256S("0x2afae181a32b58c6d0c3e0f54401a11e4aa04d99237daa5d8848dc17cfae698b"));
+        assert(genesis.hashMerkleRoot == uint256S("0xefde65bd87b4e78f9dd380c2cc8ad9d098623c747d74d09b744a78f42ac7ca7c"));
+
+        // 0x3d2160a3b5dc4a9d62e7e66a295f70313ac808440ef7400d6c0772171ce973a5
+        // 0x5b2a3f53f605d62c53e62932dac6925e3d74afa5a4b459745c36d42d0ed26a69
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
