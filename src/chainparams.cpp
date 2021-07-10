@@ -80,6 +80,8 @@ public:
         consensus.nMajorityEnforceBlockUpgrade = 1500;
         consensus.nMajorityRejectBlockOutdated = 1900;
         consensus.nMajorityWindow = 2000;
+	// narxar
+        consensus.BIP34Height = 0;
         // BIP34 is never enforced in Dingacoin v2 blocks, so we enforce from v3
         // consensus.BIP34Height = 1034383;
         // consensus.BIP34Hash = uint256S("0x80d1364201e5df97e696c03bdd24dc885e8617b9de51e453c10a4f629b1e797a");
@@ -122,23 +124,23 @@ public:
         // consensus.fAllowLegacyBlocks = true;
         // consensus.nHeightEffective = 0;
 
-        // Blocks 145000 - 371336 are Digishield without AuxPoW
-        digishieldConsensus = consensus;
-        digishieldConsensus.nHeightEffective = 145000;
-        digishieldConsensus.fSimplifiedRewards = true;
-        digishieldConsensus.fDigishieldDifficultyCalculation = true;
-        digishieldConsensus.nPowTargetTimespan = 60; // post-digishield: 1 minute
-        digishieldConsensus.nCoinbaseMaturity = 240;
+        // // Blocks 145000 - 371336 are Digishield without AuxPoW
+        // digishieldConsensus = consensus;
+        // digishieldConsensus.nHeightEffective = 145000;
+        // digishieldConsensus.fSimplifiedRewards = true;
+        // digishieldConsensus.fDigishieldDifficultyCalculation = true;
+        // digishieldConsensus.nPowTargetTimespan = 60; // post-digishield: 1 minute
+        // digishieldConsensus.nCoinbaseMaturity = 240;
 
-        // Blocks 371337+ are AuxPoW
-        auxpowConsensus = digishieldConsensus;
-        auxpowConsensus.nHeightEffective = 371337;
-        auxpowConsensus.fAllowLegacyBlocks = false;
+        // // Blocks 371337+ are AuxPoW
+        // auxpowConsensus = digishieldConsensus;
+        // auxpowConsensus.nHeightEffective = 371337;
+        // auxpowConsensus.fAllowLegacyBlocks = false;
 
-        // Assemble the binary search tree of consensus parameters
-        pConsensusRoot = &digishieldConsensus;
-        digishieldConsensus.pLeft = &consensus;
-        digishieldConsensus.pRight = &auxpowConsensus;
+        // // Assemble the binary search tree of consensus parameters
+        // pConsensusRoot = &digishieldConsensus;
+        // digishieldConsensus.pLeft = &consensus;
+        // digishieldConsensus.pRight = &auxpowConsensus;
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -174,6 +176,10 @@ public:
         // Note that of those with the service bits flag, most only support a subset of possible options
         // vSeeds.push_back(CDNSSeedData("multidga.org", "seed.multidga.org", true));
         // vSeeds.push_back(CDNSSeedData("multidga.org", "seed2.multidga.org"));
+	vSeeds.push_back(CDNSSeedData("192.168.254.111", "192.168.254.111", true));
+	vSeeds.push_back(CDNSSeedData("192.168.254.120", "192.168.254.120", true));
+	vSeeds.push_back(CDNSSeedData("192.168.254.131", "192.168.254.131", true));
+	vSeeds.push_back(CDNSSeedData("192.168.254.110", "192.168.254.110", true));
 	vSeeds.push_back(CDNSSeedData("54.177.147.162", "54.177.147.162", true));
         vSeeds.push_back(CDNSSeedData("47.181.185.72" , "47.181.185.72" , true));
         vSeeds.push_back(CDNSSeedData("47.181.185.70" , "47.181.185.70" , true));
@@ -256,7 +262,7 @@ public:
         consensus.nMajorityRejectBlockOutdated = 750;
         consensus.nMajorityWindow = 1000;
         // BIP34 is never enforced in Dingacoin v2 blocks, so we enforce from v3
-        // consensus.BIP34Height = 0;
+        consensus.BIP34Height = 0;
         // consensus.BIP34Hash = uint256S("0x21b8b97dcdb94caa67c7f8f6dbf22e61e0cfe0e46e1fff3528b22864659e9b38");
         // consensus.BIP65Height = 1854705; // 955bd496d23790aba1ecfacb722b089a6ae7ddabaedf7d8fb0878f48308a71f9
         // consensus.BIP66Height = 708658; // 21b8b97dcdb94caa67c7f8f6dbf22e61e0cfe0e46e1fff3528b22864659e9b38 - this is the last block that could be v2, 1900 blocks past the last v2 block
@@ -293,32 +299,32 @@ public:
         // consensus.nHeightEffective = 0;
         // consensus.fAllowLegacyBlocks = true;
 
-        // Blocks 145000 - 157499 are Digishield without minimum difficulty on all blocks
-        digishieldConsensus = consensus;
-        digishieldConsensus.nHeightEffective = 145000;
-        digishieldConsensus.nPowTargetTimespan = 60; // post-digishield: 1 minute
-        digishieldConsensus.fDigishieldDifficultyCalculation = true;
-        digishieldConsensus.fSimplifiedRewards = true;
-        digishieldConsensus.fPowAllowMinDifficultyBlocks = false;
-        digishieldConsensus.nCoinbaseMaturity = 240;
+        // // Blocks 145000 - 157499 are Digishield without minimum difficulty on all blocks
+        // digishieldConsensus = consensus;
+        // digishieldConsensus.nHeightEffective = 145000;
+        // digishieldConsensus.nPowTargetTimespan = 60; // post-digishield: 1 minute
+        // digishieldConsensus.fDigishieldDifficultyCalculation = true;
+        // digishieldConsensus.fSimplifiedRewards = true;
+        // digishieldConsensus.fPowAllowMinDifficultyBlocks = false;
+        // digishieldConsensus.nCoinbaseMaturity = 240;
 
-        // Blocks 157500 - 158099 are Digishield with minimum difficulty on all blocks
-        minDifficultyConsensus = digishieldConsensus;
-        minDifficultyConsensus.nHeightEffective = 157500;
-        minDifficultyConsensus.fPowAllowDigishieldMinDifficultyBlocks = true;
-        minDifficultyConsensus.fPowAllowMinDifficultyBlocks = true;
+        // // Blocks 157500 - 158099 are Digishield with minimum difficulty on all blocks
+        // minDifficultyConsensus = digishieldConsensus;
+        // minDifficultyConsensus.nHeightEffective = 157500;
+        // minDifficultyConsensus.fPowAllowDigishieldMinDifficultyBlocks = true;
+        // minDifficultyConsensus.fPowAllowMinDifficultyBlocks = true;
 
-        // Enable AuxPoW at 158100
-        auxpowConsensus = minDifficultyConsensus;
-        auxpowConsensus.nHeightEffective = 158100;
-        auxpowConsensus.fPowAllowDigishieldMinDifficultyBlocks = true;
-        auxpowConsensus.fAllowLegacyBlocks = false;
+        // // Enable AuxPoW at 158100
+        // auxpowConsensus = minDifficultyConsensus;
+        // auxpowConsensus.nHeightEffective = 158100;
+        // auxpowConsensus.fPowAllowDigishieldMinDifficultyBlocks = true;
+        // auxpowConsensus.fAllowLegacyBlocks = false;
 
-        // Assemble the binary search tree of parameters
-        pConsensusRoot = &digishieldConsensus;
-        digishieldConsensus.pLeft = &consensus;
-        digishieldConsensus.pRight = &minDifficultyConsensus;
-        minDifficultyConsensus.pRight = &auxpowConsensus;
+        // // Assemble the binary search tree of parameters
+        // pConsensusRoot = &digishieldConsensus;
+        // digishieldConsensus.pLeft = &consensus;
+        // digishieldConsensus.pRight = &minDifficultyConsensus;
+        // minDifficultyConsensus.pRight = &auxpowConsensus;
 
         pchMessageStart[0] = 0xb8;
         pchMessageStart[1] = 0xc8;
@@ -351,6 +357,10 @@ public:
         // nodes with support for servicebits filtering should be at the top
         // vSeeds.push_back(CDNSSeedData("jrn.me.uk", "testseed.jrn.me.uk"));
 	
+	vSeeds.push_back(CDNSSeedData("192.168.254.111", "192.168.254.111", true));
+	vSeeds.push_back(CDNSSeedData("192.168.254.120", "192.168.254.120", true));
+	vSeeds.push_back(CDNSSeedData("192.168.254.131", "192.168.254.131", true));
+	vSeeds.push_back(CDNSSeedData("192.168.254.110", "192.168.254.110", true));
 	vSeeds.push_back(CDNSSeedData("54.177.147.162", "54.177.147.162", true));
         vSeeds.push_back(CDNSSeedData("47.181.185.72" , "47.181.185.72" , true));
         vSeeds.push_back(CDNSSeedData("47.181.185.70" , "47.181.185.70" , true));
@@ -417,6 +427,7 @@ public:
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 1000;
+        consensus.BIP34Height = 0;
         // consensus.BIP34Height = 100000000; // BIP34 has not activated on regtest (far in the future so block v1 are not rejected in tests)
         // consensus.BIP34Hash = uint256();
         // consensus.BIP65Height = 1351; // BIP65 activated on regtest (Used in rpc activation tests)
@@ -454,19 +465,19 @@ public:
         // consensus.fSimplifiedRewards = true;
         // consensus.nCoinbaseMaturity = 60; // For easier testability in RPC tests
 
-        digishieldConsensus = consensus;
-        digishieldConsensus.nHeightEffective = 10;
-        digishieldConsensus.nPowTargetTimespan = 1; // regtest: also retarget every second in digishield mode, for conformity
-        digishieldConsensus.fDigishieldDifficultyCalculation = true;
+        // digishieldConsensus = consensus;
+        // digishieldConsensus.nHeightEffective = 10;
+        // digishieldConsensus.nPowTargetTimespan = 1; // regtest: also retarget every second in digishield mode, for conformity
+        // digishieldConsensus.fDigishieldDifficultyCalculation = true;
 
-        auxpowConsensus = digishieldConsensus;
-        auxpowConsensus.fAllowLegacyBlocks = false;
-        auxpowConsensus.nHeightEffective = 20;
+        // auxpowConsensus = digishieldConsensus;
+        // auxpowConsensus.fAllowLegacyBlocks = false;
+        // auxpowConsensus.nHeightEffective = 20;
 
-        // Assemble the binary search tree of parameters
-        digishieldConsensus.pLeft = &consensus;
-        digishieldConsensus.pRight = &auxpowConsensus;
-        pConsensusRoot = &digishieldConsensus;
+        // // Assemble the binary search tree of parameters
+        // digishieldConsensus.pLeft = &consensus;
+        // digishieldConsensus.pRight = &auxpowConsensus;
+        // pConsensusRoot = &digishieldConsensus;
 
         pchMessageStart[0] = 0xb7;
         pchMessageStart[1] = 0xc7;
