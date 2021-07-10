@@ -118,29 +118,29 @@ public:
         // // By default assume that the signatures in ancestors of this block are valid.
         // consensus.defaultAssumeValid = uint256S("0x77e3f4a4bcb4a2c15e8015525e3d15b466f6c022f6ca82698f329edef7d9777e"); // 2,510,150
 
-        // // AuxPoW parameters
-        // consensus.nAuxpowChainId = 0x0062; // 98 - Josh Wise!
-        // consensus.fStrictChainId = true;
-        // consensus.fAllowLegacyBlocks = true;
-        // consensus.nHeightEffective = 0;
+        // AuxPoW parameters
+        consensus.nAuxpowChainId = 0x0062; // 98 - Josh Wise!
+        consensus.fStrictChainId = true;
+        consensus.fAllowLegacyBlocks = true;
+        consensus.nHeightEffective = 0;
 
-        // // Blocks 145000 - 371336 are Digishield without AuxPoW
-        // digishieldConsensus = consensus;
-        // digishieldConsensus.nHeightEffective = 145000;
-        // digishieldConsensus.fSimplifiedRewards = true;
-        // digishieldConsensus.fDigishieldDifficultyCalculation = true;
-        // digishieldConsensus.nPowTargetTimespan = 60; // post-digishield: 1 minute
-        // digishieldConsensus.nCoinbaseMaturity = 240;
+        // Blocks 145000 - 371336 are Digishield without AuxPoW
+        digishieldConsensus = consensus;
+        digishieldConsensus.nHeightEffective = 145000;
+        digishieldConsensus.fSimplifiedRewards = true;
+        digishieldConsensus.fDigishieldDifficultyCalculation = true;
+        digishieldConsensus.nPowTargetTimespan = 60; // post-digishield: 1 minute
+        digishieldConsensus.nCoinbaseMaturity = 240;
 
-        // // Blocks 371337+ are AuxPoW
-        // auxpowConsensus = digishieldConsensus;
-        // auxpowConsensus.nHeightEffective = 371337;
-        // auxpowConsensus.fAllowLegacyBlocks = false;
+        // Blocks 371337+ are AuxPoW
+        auxpowConsensus = digishieldConsensus;
+        auxpowConsensus.nHeightEffective = 371337;
+        auxpowConsensus.fAllowLegacyBlocks = false;
 
-        // // Assemble the binary search tree of consensus parameters
-        // pConsensusRoot = &digishieldConsensus;
-        // digishieldConsensus.pLeft = &consensus;
-        // digishieldConsensus.pRight = &auxpowConsensus;
+        // Assemble the binary search tree of consensus parameters
+        pConsensusRoot = &digishieldConsensus;
+        digishieldConsensus.pLeft = &consensus;
+        digishieldConsensus.pRight = &auxpowConsensus;
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -174,19 +174,22 @@ public:
 	// 0xefde65bd87b4e78f9dd380c2cc8ad9d098623c747d74d09b744a78f42ac7ca7c
 
         // Note that of those with the service bits flag, most only support a subset of possible options
+	//
         // vSeeds.push_back(CDNSSeedData("multidga.org", "seed.multidga.org", true));
         // vSeeds.push_back(CDNSSeedData("multidga.org", "seed2.multidga.org"));
-	vSeeds.push_back(CDNSSeedData("192.168.254.111", "192.168.254.111", true));
-	vSeeds.push_back(CDNSSeedData("192.168.254.120", "192.168.254.120", true));
-	vSeeds.push_back(CDNSSeedData("192.168.254.131", "192.168.254.131", true));
-	vSeeds.push_back(CDNSSeedData("192.168.254.110", "192.168.254.110", true));
-	vSeeds.push_back(CDNSSeedData("54.177.147.162", "54.177.147.162", true));
-        vSeeds.push_back(CDNSSeedData("47.181.185.72" , "47.181.185.72" , true));
-        vSeeds.push_back(CDNSSeedData("47.181.185.70" , "47.181.185.70" , true));
-        vSeeds.push_back(CDNSSeedData("47.181.185.71" , "47.181.185.71" , true));
-        vSeeds.push_back(CDNSSeedData("47.181.185.69" , "47.181.185.69" , true));
-        vSeeds.push_back(CDNSSeedData("47.181.185.68" , "47.181.185.68" , true));
 	
+        vSeeds.push_back(CDNSSeedData("47.181.185.68" , "47.181.185.68" , true));
+	vSeeds.push_back(CDNSSeedData("192.168.254.111", "192.168.254.111", true));
+	vSeeds.push_back(CDNSSeedData("192.168.254.119", "192.168.254.119", true));
+	vSeeds.push_back(CDNSSeedData("192.168.254.130", "192.168.254.130", true));
+	vSeeds.push_back(CDNSSeedData("192.168.254.100", "192.168.254.100", true));
+	vSeeds.push_back(CDNSSeedData("192.168.254.156", "192.168.254.156", true));
+        // vSeeds.push_back(CDNSSeedData("54.177.147.162", "54.177.147.162", true));
+        // vSeeds.push_back(CDNSSeedData("47.181.185.72" , "47.181.185.72" , true));
+        // vSeeds.push_back(CDNSSeedData("47.181.185.70" , "47.181.185.70" , true));
+        // vSeeds.push_back(CDNSSeedData("47.181.185.71" , "47.181.185.71" , true));
+        // vSeeds.push_back(CDNSSeedData("47.181.185.69" , "47.181.185.69" , true));
+        // vSeeds.push_back(CDNSSeedData("47.181.185.68" , "47.181.185.68" , true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,31);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,22);
@@ -293,38 +296,38 @@ public:
         // // By default assume that the signatures in ancestors of this block are valid.
         // consensus.defaultAssumeValid = uint256S("0x6943eaeaba98dc7d09f7e73398daccb4abcabb18b66c8c875e52b07638d93951"); // 900,000
 
-        // // AuxPoW parameters
-        // consensus.nAuxpowChainId = 0x0062; // 98 - Josh Wise!
-        // consensus.fStrictChainId = false;
-        // consensus.nHeightEffective = 0;
-        // consensus.fAllowLegacyBlocks = true;
+        // AuxPoW parameters
+        consensus.nAuxpowChainId = 0x0062; // 98 - Josh Wise!
+        consensus.fStrictChainId = false;
+        consensus.nHeightEffective = 0;
+        consensus.fAllowLegacyBlocks = true;
 
-        // // Blocks 145000 - 157499 are Digishield without minimum difficulty on all blocks
-        // digishieldConsensus = consensus;
-        // digishieldConsensus.nHeightEffective = 145000;
-        // digishieldConsensus.nPowTargetTimespan = 60; // post-digishield: 1 minute
-        // digishieldConsensus.fDigishieldDifficultyCalculation = true;
-        // digishieldConsensus.fSimplifiedRewards = true;
-        // digishieldConsensus.fPowAllowMinDifficultyBlocks = false;
-        // digishieldConsensus.nCoinbaseMaturity = 240;
+        // Blocks 145000 - 157499 are Digishield without minimum difficulty on all blocks
+        digishieldConsensus = consensus;
+        digishieldConsensus.nHeightEffective = 145000;
+        digishieldConsensus.nPowTargetTimespan = 60; // post-digishield: 1 minute
+        digishieldConsensus.fDigishieldDifficultyCalculation = true;
+        digishieldConsensus.fSimplifiedRewards = true;
+        digishieldConsensus.fPowAllowMinDifficultyBlocks = false;
+        digishieldConsensus.nCoinbaseMaturity = 240;
 
-        // // Blocks 157500 - 158099 are Digishield with minimum difficulty on all blocks
-        // minDifficultyConsensus = digishieldConsensus;
-        // minDifficultyConsensus.nHeightEffective = 157500;
-        // minDifficultyConsensus.fPowAllowDigishieldMinDifficultyBlocks = true;
-        // minDifficultyConsensus.fPowAllowMinDifficultyBlocks = true;
+        // Blocks 157500 - 158099 are Digishield with minimum difficulty on all blocks
+        minDifficultyConsensus = digishieldConsensus;
+        minDifficultyConsensus.nHeightEffective = 157500;
+        minDifficultyConsensus.fPowAllowDigishieldMinDifficultyBlocks = true;
+        minDifficultyConsensus.fPowAllowMinDifficultyBlocks = true;
 
-        // // Enable AuxPoW at 158100
-        // auxpowConsensus = minDifficultyConsensus;
-        // auxpowConsensus.nHeightEffective = 158100;
-        // auxpowConsensus.fPowAllowDigishieldMinDifficultyBlocks = true;
-        // auxpowConsensus.fAllowLegacyBlocks = false;
+        // Enable AuxPoW at 158100
+        auxpowConsensus = minDifficultyConsensus;
+        auxpowConsensus.nHeightEffective = 158100;
+        auxpowConsensus.fPowAllowDigishieldMinDifficultyBlocks = true;
+        auxpowConsensus.fAllowLegacyBlocks = false;
 
-        // // Assemble the binary search tree of parameters
-        // pConsensusRoot = &digishieldConsensus;
-        // digishieldConsensus.pLeft = &consensus;
-        // digishieldConsensus.pRight = &minDifficultyConsensus;
-        // minDifficultyConsensus.pRight = &auxpowConsensus;
+        // Assemble the binary search tree of parameters
+        pConsensusRoot = &digishieldConsensus;
+        digishieldConsensus.pLeft = &consensus;
+        digishieldConsensus.pRight = &minDifficultyConsensus;
+        minDifficultyConsensus.pRight = &auxpowConsensus;
 
         pchMessageStart[0] = 0xb8;
         pchMessageStart[1] = 0xc8;
@@ -357,16 +360,18 @@ public:
         // nodes with support for servicebits filtering should be at the top
         // vSeeds.push_back(CDNSSeedData("jrn.me.uk", "testseed.jrn.me.uk"));
 	
-	vSeeds.push_back(CDNSSeedData("192.168.254.111", "192.168.254.111", true));
-	vSeeds.push_back(CDNSSeedData("192.168.254.120", "192.168.254.120", true));
-	vSeeds.push_back(CDNSSeedData("192.168.254.131", "192.168.254.131", true));
-	vSeeds.push_back(CDNSSeedData("192.168.254.110", "192.168.254.110", true));
-	vSeeds.push_back(CDNSSeedData("54.177.147.162", "54.177.147.162", true));
-        vSeeds.push_back(CDNSSeedData("47.181.185.72" , "47.181.185.72" , true));
-        vSeeds.push_back(CDNSSeedData("47.181.185.70" , "47.181.185.70" , true));
-        vSeeds.push_back(CDNSSeedData("47.181.185.71" , "47.181.185.71" , true));
-        vSeeds.push_back(CDNSSeedData("47.181.185.69" , "47.181.185.69" , true));
         vSeeds.push_back(CDNSSeedData("47.181.185.68" , "47.181.185.68" , true));
+	vSeeds.push_back(CDNSSeedData("192.168.254.111", "192.168.254.111", true));
+	vSeeds.push_back(CDNSSeedData("192.168.254.119", "192.168.254.119", true));
+	vSeeds.push_back(CDNSSeedData("192.168.254.130", "192.168.254.130", true));
+	vSeeds.push_back(CDNSSeedData("192.168.254.100", "192.168.254.100", true));
+	vSeeds.push_back(CDNSSeedData("192.168.254.156", "192.168.254.156", true));
+        // vSeeds.push_back(CDNSSeedData("54.177.147.162", "54.177.147.162", true));
+        // vSeeds.push_back(CDNSSeedData("47.181.185.72" , "47.181.185.72" , true));
+        // vSeeds.push_back(CDNSSeedData("47.181.185.70" , "47.181.185.70" , true));
+        // vSeeds.push_back(CDNSSeedData("47.181.185.71" , "47.181.185.71" , true));
+        // vSeeds.push_back(CDNSSeedData("47.181.185.69" , "47.181.185.69" , true));
+        // vSeeds.push_back(CDNSSeedData("47.181.185.68" , "47.181.185.68" , true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,113); // 0x71
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196); // 0xc4
@@ -461,23 +466,23 @@ public:
         // consensus.fStrictChainId = true;
         // consensus.fAllowLegacyBlocks = true;
 
-        // // Dingacoin parameters
-        // consensus.fSimplifiedRewards = true;
-        // consensus.nCoinbaseMaturity = 60; // For easier testability in RPC tests
+        // Dingacoin parameters
+        consensus.fSimplifiedRewards = true;
+        consensus.nCoinbaseMaturity = 60; // For easier testability in RPC tests
 
-        // digishieldConsensus = consensus;
-        // digishieldConsensus.nHeightEffective = 10;
-        // digishieldConsensus.nPowTargetTimespan = 1; // regtest: also retarget every second in digishield mode, for conformity
-        // digishieldConsensus.fDigishieldDifficultyCalculation = true;
+        digishieldConsensus = consensus;
+        digishieldConsensus.nHeightEffective = 10;
+        digishieldConsensus.nPowTargetTimespan = 1; // regtest: also retarget every second in digishield mode, for conformity
+        digishieldConsensus.fDigishieldDifficultyCalculation = true;
 
-        // auxpowConsensus = digishieldConsensus;
-        // auxpowConsensus.fAllowLegacyBlocks = false;
-        // auxpowConsensus.nHeightEffective = 20;
+        auxpowConsensus = digishieldConsensus;
+        auxpowConsensus.fAllowLegacyBlocks = false;
+        auxpowConsensus.nHeightEffective = 20;
 
-        // // Assemble the binary search tree of parameters
-        // digishieldConsensus.pLeft = &consensus;
-        // digishieldConsensus.pRight = &auxpowConsensus;
-        // pConsensusRoot = &digishieldConsensus;
+        // Assemble the binary search tree of parameters
+        digishieldConsensus.pLeft = &consensus;
+        digishieldConsensus.pRight = &auxpowConsensus;
+        pConsensusRoot = &digishieldConsensus;
 
         pchMessageStart[0] = 0xb7;
         pchMessageStart[1] = 0xc7;
